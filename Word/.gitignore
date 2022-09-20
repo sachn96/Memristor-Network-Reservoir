@@ -1,0 +1,7 @@
+# ignore input audio
+data/recordings/
+
+
+# ignore output files
+data/cochleagram/
+data/cochleagram_mask/
