@@ -8,6 +8,7 @@
 % 3. AuditoryToolbox (https://engineering.purdue.edu/~malcolm/interval/1998-010/)
 
 function getCochleagram()
+addpath('./AuditoryToolbox/')
 
 %%%%% Make a new folder
 folder_coch = ['./cochleagram/'];
@@ -16,13 +17,12 @@ if not(exist(folder_coch, 'dir'))
     addpath(folder_coch);
 end
 
-s_list = [1 2 5 6 7];
-for s = 1:5
-    for d = 0:9
+s = 1; % george
+for d = 0:9
         for u = 0:9
             % read sph files
-            infile = ['./ti46_LDC93S9/ti20/train/f',num2str(s_list(s)),'/0',num2str(d),'f',num2str(s_list(s)),'set',num2str(u),'.sph'];
-            [signal,fs,WRD,PHN,FFX] = v_readsph(infile,'wt');  % sap-voicebox
+            infile = ['./recordings/',num2str(d),'_george_',num2str(u),'.wav'];
+            [signal,~] = audioread(infile);
             disp(['Reading data: s=',num2str(s),' d=',num2str(d),' u=',num2str(u)]);
             
             % silence
@@ -49,7 +49,7 @@ for s = 1:5
             %size(data)
             
             % file output
-            outfile = [folder_coch,'/s',num2str(s_list(s)),'_u',num2str(u+1),'_d',num2str(d),'.mat'];
+            outfile = [folder_coch,'/s',num2str(s),'_u',num2str(u+1),'_d',num2str(d),'.mat'];
             save(outfile,'data');
 
             % show figures
@@ -59,5 +59,4 @@ for s = 1:5
             pause(0.5);
             %}
         end
-    end
 end
