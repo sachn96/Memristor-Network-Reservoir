@@ -5,3 +5,4 @@ data/recordings/
 # ignore output files
 data/cochleagram/
 data/cochleagram_mask/
+reservoir_computing/reservoir_states/
